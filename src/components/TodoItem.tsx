@@ -17,7 +17,6 @@ export const TodoItem: React.FC<Props> = ({
   handleTodoUpdate,
   handleTodoToggle,
 }) => {
-  const [isChecked, setIsChecked] = useState(todo.completed);
   const [isEdited, setIsEdited] = useState(false);
   const [editValue, setEditvalue] = useState('');
   const editedInputField = useRef<HTMLInputElement>(null);
@@ -56,9 +55,8 @@ export const TodoItem: React.FC<Props> = ({
           className="todo__status"
           onChange={() => {
             handleTodoToggle(todo);
-            setIsChecked(!todo.completed);
           }}
-          checked={isChecked}
+          checked={todo.completed}
         />
       </label>
 
