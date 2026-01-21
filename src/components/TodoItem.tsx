@@ -24,6 +24,8 @@ export const TodoItem: React.FC<Props> = ({
   const isProcessed = processings.has(todo.id);
   const titleEdit = () => {
     if (editValue === todo.title) {
+      setIsEdited(false);
+
       return;
     }
 
@@ -39,6 +41,13 @@ export const TodoItem: React.FC<Props> = ({
     }
 
     setIsEdited(false);
+  };
+
+  const handleEscapeKeyUp = (event: React.KeyboardEvent) => {
+    if (event.key === 'Escape') {
+      setEditvalue(todo.title);
+      setIsEdited(false);
+    }
   };
 
   return (
@@ -100,6 +109,7 @@ export const TodoItem: React.FC<Props> = ({
             value={editValue}
             onChange={event => setEditvalue(event.target.value)}
             onBlur={titleEdit}
+            onKeyUp={handleEscapeKeyUp}
           />
         </form>
       )}
