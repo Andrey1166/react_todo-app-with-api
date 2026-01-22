@@ -3,10 +3,10 @@ import { TodoItem } from './TodoItem';
 
 type Props = {
   todosList: Todo[];
-  handleTodoDelete: (id: number) => void;
+  handleTodoDelete: (id: number) => Promise<void>;
   tempTodo: Todo | null;
   processings: Set<number>;
-  handleTodoUpdate: (todo: Todo) => void;
+  handleTodoUpdate: (todo: Todo) => Promise<void>;
   handleTodoToggle: (todo: Todo) => void;
 };
 

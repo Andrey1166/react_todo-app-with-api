@@ -4,9 +4,9 @@ import { useRef, useState } from 'react';
 
 type Props = {
   todo: Todo;
-  handleTodoDelete: (id: number) => void;
+  handleTodoDelete: (id: number) => Promise<void>;
   processings: Set<number>;
-  handleTodoUpdate: (todo: Todo) => void;
+  handleTodoUpdate: (todo: Todo) => Promise<void>;
   handleTodoToggle: (todo: Todo) => void;
 };
 
@@ -30,17 +30,19 @@ export const TodoItem: React.FC<Props> = ({
     }
 
     if (editValue.trim() === '') {
-      handleTodoDelete(todo.id);
+      handleTodoDelete(todo.id)
+        .then(() => setIsEdited(false))
+        .catch(() => setIsEdited(true));
     } else {
       handleTodoUpdate({
         id: todo.id,
         title: editValue.trim(),
         userId: todo.userId,
         completed: todo.completed,
-      });
+      })
+        .then(() => setIsEdited(false))
+        .catch(() => setIsEdited(true));
     }
-
-    setIsEdited(false);
   };
 
   const handleEscapeKeyUp = (event: React.KeyboardEvent) => {
