@@ -25,9 +25,13 @@ export const TodoItem: React.FC<Props> = ({
   const titleEdit = () => {
     const trimmedValue = editValue.trim();
 
-    if (trimmedValue === todo.title) {
+    if (trimmedValue === todo.title.trim()) {
       setIsEdited(false);
 
+      return;
+    }
+
+    if (isProcessed) {
       return;
     }
 
