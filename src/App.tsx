@@ -68,7 +68,10 @@ export const App: React.FC = () => {
       .then(() =>
         setTodos(currentList => currentList.filter(todo => todo.id !== todoId)),
       )
-      .catch(() => setError(ErrorMessage.UNABLE_DELETE))
+      .catch(err => {
+        setError(ErrorMessage.UNABLE_DELETE);
+        throw err;
+      })
       .finally(() => {
         setProcessings(prev => {
           const newSet = new Set(prev);
