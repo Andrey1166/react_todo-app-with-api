@@ -34,7 +34,7 @@ export const TodoItem: React.FC<Props> = ({
     } else {
       handleTodoUpdate({
         id: todo.id,
-        title: editValue,
+        title: editValue.trim(),
         userId: todo.userId,
         completed: todo.completed,
       });
