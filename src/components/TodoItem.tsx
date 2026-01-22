@@ -105,7 +105,7 @@ export const TodoItem: React.FC<Props> = ({
         <form
           onSubmit={event => {
             event.preventDefault();
-            editedInputField.current?.blur();
+            titleEdit();
           }}
         >
           <input
